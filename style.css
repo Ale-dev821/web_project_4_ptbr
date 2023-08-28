@@ -1,0 +1,210 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#000000;
+  }
+  
+      .page {
+      margin: 0 auto;
+      max-width: 1280px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+        .header {
+            position: relative;
+            width: 880px;
+            height: 74px;
+            margin-top: 45px;
+            margin-left: 200px;
+            border: 1px;
+        }
+        .logo_place_header {
+            width: 173px;
+            height: 33px;
+        }
+        .logo-line {
+            position: absolute;
+            width: 880.0000000000033px;
+            height: 1px; 
+            bottom: 0; 
+            left: 0; 
+            opacity: 0.7;
+            border-bottom: 1px solid #545454;
+            margin-top: 119px;
+          }
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+            margin-left: 200px;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+        }
+        .profile-intro {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+        .title-intro {
+            max-width: 373px;
+            max-height: 39px;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 42px;
+            font-weight: 500;
+            line-height: 48px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #FFFFFF;
+        }
+        .subtitle-intro {
+            max-width: 415px;
+            max-height: 22px;
+            margin: 20px 0 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 22px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #FFFFFF;
+        }
+        .edit-button {
+            width: 24px;
+            height: 24px;
+            background: url(images/Edit\ Button.png);
+            background-size: cover;
+            border: none;
+            cursor: pointer;
+            margin-left: 391px;
+            top: 200px;
+        }
+        .add-button {
+            width: 150px;
+            height: 50px;
+            top: 194px;
+            left: 930px;
+            border-radius: 2px;
+            border: 2px solid #FFFFFF;
+            background: url(images/);
+
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            max-width: 880px;
+            margin: 50px auto 0;
+        }
+        
+        .group-image {
+            position: relative;
+            width: 282px;
+            height: 361px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #FFFFFF;            
+        }
+
+        .group-text {
+            display: flex;
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 29px;
+            letter-spacing: 0em;
+            text-align: left;
+            align-items: center;
+            margin-left: 15px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .heart-button {
+            background-color: transparent;
+            position: absolute;
+            border: none;
+            width: 21px;
+            height: 19px;
+            margin-left: 223px;
+            background-image: url('images/heart-button.png');
+            background-size: cover;
+            cursor: pointer;
+            transition: color 0.3s;
+          }
+
+        .group-text:hover .heart-button,
+        .group-text .heart-button.active {
+            color: black;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 282px;
+            top: 329px;
+            left: 200px;
+            border-radius: 10px 10px 0px 0px;
+            object-fit: cover;
+        }
+        
+          /* Responsivo: 3 imagens por linha */
+          @media (max-width: 1184px) {
+            .photo-grid {
+              grid-template-columns: repeat(auto-fit, minmax(284px, 1fr));
+            }
+          }
+          
+          /* Responsivo: 2 imagens por linha em tablets */
+          @media (min-width: 768px) and (max-width: 992px){
+            .photo-grid {
+              grid-template-columns: repeat(auto-fit, minmax(213px, 1fr));
+              grid-gap: 20px;
+              max-width: 768px;
+              margin: 50px auto 0;
+            }
+          }
+          
+          /* Responsivo: 1 imagem por linha em smartphones */
+          @media (max-width: 767px) {
+            .photo-grid {
+              grid-template-columns: 1fr;
+              grid-gap: 20px;
+              max-width: 300px;
+              margin: 30px auto 0;
+            }
+          }
+          /* Responsivo: 2 imagens por linha em tablets */
+          @media (min-width:768px) and (max-width: 992px) {
+            .photo-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+          .footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 318px;
+            height: 18px;
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 22px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #545454;
+            margin: 50px  auto 50px 288px;
+          }
+          
+          
+          
