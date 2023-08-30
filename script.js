@@ -1,9 +1,7 @@
-var heart = document.getElementById('heart-button')
-         heart.addEventListener('mouseenter', entrar)
-         heart.addEventListener('mouseout', sair)
-           function entrar(){
-            heart.style.background = 'black'
-           }
-           function sair(){
-            heart.style.background = 'white'
-           }
+const imageButtons = document.querySelectorAll('.button-like');
+
+imageButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('active');
+    });
+});
