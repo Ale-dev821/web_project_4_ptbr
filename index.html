@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EUA afora</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages/index.css">
 </head>
 <body>
     <div class="page">
@@ -16,11 +17,23 @@
             <section class="profile">
                 <img class="avatar" src="images/Avatar.png" alt="Imagem do avatar a ser adicionado">
                 <div class="profile-intro">
+                    <button class="edit-button" data-active="active.png"></button>
                     <h1 class="title-intro">Jacques Cousteau</h1>
                     <h2 class="subtitle-intro">Explorar</h2>
-                    <div><button class="edit-button"></button></div>
                 </div>
-                <div><button class="add-button"></button></div>
+                <button class="add-button" data-hover="hover.png"></button>
+                <div class="popup" id="editProfilePopup">
+                    <div class="popup__overlay"></div>
+                    <div class="popup__container">
+                        <h2 class="title-edit">Editar Perfil</h2>
+                        <label for="profileName"></label>
+                        <input type="text" id="profileName" placeholder="Nome">
+                        <label for="profileAbout"></label>
+                        <textarea id="profileAbout" placeholder="Sobre Mim"></textarea>
+                        <button id="saveProfileButton">Salvar</button>
+                    </div>
+                    <button id="closePopupButton" class="close-button"></button>
+                </div>
             </section>
             <section class="photo-grid">
                 <div class="group-image">

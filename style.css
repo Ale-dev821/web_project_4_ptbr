@@ -10,13 +10,14 @@ body {
   }
   
       .page {
-      margin: 0 auto;
-      max-width: 1280px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+        font-family: 'Inter', sans-serif;
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
   
         .header {
@@ -50,14 +51,17 @@ body {
             height: 120px;
         }
         .profile-intro {
+            position: relative;
+            max-width: 415px;
+            min-height: 77px;
             margin-left: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
           }
         .title-intro {
-            max-width: 373px;
-            max-height: 39px;
+            width: 100%;
+            min-height: 39px;
             margin: 0;
             font-family: 'Inter', sans-serif;
             font-size: 42px;
@@ -68,8 +72,8 @@ body {
             color: #FFFFFF;
         }
         .subtitle-intro {
-            max-width: 415px;
-            max-height: 22px;
+            width: 415px;
+            height: 22px;
             margin: 20px 0 0;
             font-family: 'Inter', sans-serif;
             font-size: 18px;
@@ -79,26 +83,124 @@ body {
             text-align: left;
             color: #FFFFFF;
         }
+        
         .edit-button {
+            position: absolute;
             width: 24px;
             height: 24px;
             background: url(images/Edit\ Button.png);
             background-size: cover;
             border: none;
             cursor: pointer;
-            margin-left: 391px;
-            top: 200px;
+            padding: 0;
+            top: 15px;
+            left: 400px;
         }
-        .add-button {
-            width: 150px;
-            height: 50px;
-            top: 194px;
-            left: 930px;
-            border-radius: 2px;
-            border: 2px solid #FFFFFF;
-            background: url(images/);
+        .edit-button.active {
+            background-image: url(images/Edit\ Button\ trasition.png)
+        }
+       
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            width: 430px;
+            height: 330px;
+            top: 195px;
+            left: 425px;
+            border-radius: 10px;
+        }
+        .tile-edit{
+            width: 330px;
+            height: 23px;
+            top: 229px;
+            left: 461px;
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 29px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #000000;
+            margin-top: 10px;
+        }
 
+        .popup__overlay {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
+
+        .popup__container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 430px;
+            max-height: 330px;
+        }
+        .close-button {
+            position: absolute;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            background-image: url(images/Close\ Icon.png);
+            width: 33px;
+            height: 33px;
+            color: #FFFFFF;
+            padding: 0;
+            top: -40px;
+            right: -40px;
+        }
+
+        #profileName {
+            width: 358px;
+            height: 27.255207061767578px;
+            top: 306px;
+            left: 461px;
+            border: 1px solid #000000;
+            margin-top: 30px;
+        }
+        #profileAbout {
+            width: 358px;
+            height: 27.337236404418945px;
+            top: 363px;
+            left: 461px;
+            margin-top: 20px;
+            border: 1px solid #000000;
+        }
+        #saveProfileButton {
+            background-image: url(images/Rectangle-save.png);
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 22px;
+            letter-spacing: 0em;
+            text-align: center;
+            color: #FFFFFF;
+            width: 358px;
+            height: 50.1519775390625px;
+            top: 438.337158203125px;
+            left: 461px;
+            border-radius: 2px;
+            margin-top: 40px;
+        }
+
+        /* Estilos para o pop-up quando aberto */
+        .popup_opened {
+            display: flex;
+            width: 430px;
+            height: 330px;
+            top: 195px;
+            left: 425px;
+            border-radius: 10px;
+        }
+
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -151,6 +253,21 @@ body {
         
         .button-like:hover {
             background-image: url('images/transição.png');
+        }
+        .add-button {
+            background-color: transparent;
+            border: 2px solid #FFFFFF;
+            width: 150px;
+            height: 50px;
+            margin-left: 200px;
+            background-image: url(images/Add\ Button.png);
+            background-size: cover;
+            cursor: pointer;
+            transition: background-image 0.3s ease;
+            padding: 0;
+        }
+        .add-button:hover {
+            background-image: url('images/add-button-active.png');
         }
         .gallery-image {
             width: 100%;
