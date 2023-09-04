@@ -1,0 +1,282 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+      .page {
+        font-family: 'Inter', sans-serif;
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+      
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+            .profile {
+                display: flex;
+                align-items: center;
+                margin:0;
+                width: 100%;
+            }
+            .avatar {
+                width: 100%;
+                max-width: 120px;
+                height: 120px;
+            }
+            .profile-intro {
+                position: relative;
+                max-width: 415px;
+                width: 100%;
+                min-height: 77px;
+                margin-left: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .title-intro {
+                max-width: 373px;
+                width: 100%;
+                min-height: 39px;
+                margin: 0;
+                font-family: 'Inter', sans-serif;
+                font-size: 42px;
+                font-weight: 500;
+                line-height: 48px;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #FFFFFF;
+            }
+            .subtitle-intro {
+                max-width: 415px;
+                width: 100%;
+                height: 22px;
+                margin: 20px 0 0;
+                font-family: 'Inter', sans-serif;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 22px;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #FFFFFF;
+            }
+
+            .edit-button {
+                position: absolute;
+                max-width: 24px;
+                width: 100%;
+                max-width: 24px;
+                height: 24px;
+                background: url(images/Edit\ Button.png);
+                background-size: cover;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                top: 15px;
+                margin-left: 400px;
+            }
+            .edit-button.active {
+                background-image: url(images/Edit\ Button\ trasition.png)
+            }
+
+            .popup {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                max-width: 430px;
+                width: 100%;
+                height: 330px;
+                top: 195px;
+                left: 425px;
+                border-radius: 10px;
+            }
+            .tile-edit{
+                max-width: 330px;
+                width: 100%;
+                height: 23px;
+                top: 229px;
+                left: 461px;
+                font-family: 'Inter', sans-serif;
+                font-size: 24px;
+                font-weight: 900;
+                line-height: 29px;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #000000;
+                margin-top: 10px;
+            }
+
+            .popup__overlay {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .popup__container {
+                background: #fff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                max-width: 430px;
+                width: 100%;
+                max-height: 330px;
+            }
+            .close-button {
+                position: absolute;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                background-image: url(images/Close\ Icon.png);
+                max-width: 33px;
+                width: 100%;
+                height: 33px;
+                color: #FFFFFF;
+                padding: 0;
+                top: -40px;
+                right: -40px;
+            }
+
+            #profileName {
+                max-width: 358px;
+                width: 100%;
+                height: 27.255207061767578px;
+                top: 306px;
+                left: 461px;
+                border: 1px solid #000000;
+                margin-top: 30px;
+            }
+            #profileAbout {
+                max-width: 358px;
+                width: 100%;
+                height: 27.337236404418945px;
+                top: 363px;
+                left: 461px;
+                margin-top: 20px;
+                border: 1px solid #000000;
+            }
+            #saveProfileButton {
+                background-image: url(images/Rectangle-save.png);
+                font-family: 'Inter', sans-serif;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 22px;
+                letter-spacing: 0em;
+                text-align: center;
+                color: #FFFFFF;
+                max-width: 358px;
+                width: 100%;
+                height: 50.1519775390625px;
+                top: 438.337158203125px;
+                left: 461px;
+                border-radius: 2px;
+                margin-top: 40px;
+            }
+            .add-button {
+                background-color: transparent;
+                border: 2px solid #FFFFFF;
+                max-width: 150px;
+                width: 100%;
+                height: 50px;
+                background-image: url(images/Add\ Button.png);
+                background-size: cover;
+                cursor: pointer;
+                transition: background-image 0.3s ease;
+                padding: 0;
+                margin: auto;
+            }
+            .add-button:hover {
+                background-image: url('images/add-button-active.png');
+            }
+
+            /* Estilos para o pop-up quando aberto */
+            .popup_opened {
+                display: flex;
+                max-width: 430px;
+                width: 100%;
+                height: 330px;
+                top: 195px;
+                left: 425px;
+                border-radius: 10px;
+            }
+
+            /* Estilos para tablets */
+            @media (min-width: 768px) and (max-width:992px) {
+                .profile {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .avatar {
+                    max-width: 120px;
+                    width: 100%;
+                    height: 120px;
+                }
+                .profile-intro {
+                    margin-top: 10px;
+                }
+                .title-intro {
+                    font-size: 28px;
+                }
+                .subtitle-intro {
+                    font-size: 16px;
+                }
+                .edit-button {
+                    width: 100%;
+                    max-width: 24px;
+                    height: 24px;
+                }
+                .add-button{
+                    width: 100%;                    
+                }
+            }
+
+            /* Estilos para smartphones */
+            @media (min-width: 200px) and (max-width:767px) {
+                .profile {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .avatar {
+                    max-width: 120px;
+                    width: 100%;
+                    height: 120px;
+                }
+                .title-intro {
+                    font-size: 24px;
+                    text-align: center;
+                }
+                .subtitle-intro {
+                    font-size: 14px;
+                    text-align: center;
+                }
+                .edit-button {
+                    width: 100%;
+                    max-width: 18px;
+                    height: 18px;
+                }
+                .add-button{
+                width: 100%;
+                max-width: 150px;
+                height: 50px;
+                }
+            }

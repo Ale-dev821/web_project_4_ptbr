@@ -1,0 +1,129 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+      .page {
+        font-family: 'Inter', sans-serif;
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+      
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            max-width: 880px;
+            width: 100%;
+            margin: 50px auto 0;
+        }
+    
+        .group-image {
+            position: relative;
+            max-width: 282px;
+            width: 100%;
+            height: 361px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #FFFFFF;            
+        }
+
+        .group-text {
+            display: flex;
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 29px;
+            letter-spacing: 0em;
+            text-align: left;
+            align-items: center;
+            margin-left: 15px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .button-like {
+            background-color: transparent;
+            position: absolute;
+            border: none;
+            max-width: 21px;
+            width: 100%;
+            height: 19px;
+            margin-left: 223px;
+            background-image: url('images/heart-button.png');
+            background-size: cover;
+            cursor: pointer;
+            transition: background-image 0.3s ease;
+            padding: 0;
+        }
+        .button-like.active {
+            background-image: url('images/Union.png');
+        }
+    
+        .button-like:hover {
+            background-image: url('images/transição.png');
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 282px;
+            top: 329px;
+            left: 200px;
+            border-radius: 10px 10px 0px 0px;
+            object-fit: cover;
+        }
+    
+        /* Responsivo: 3 imagens por linha */
+        @media (max-width: 1184px) {
+            .photo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(284px, 1fr));
+            }
+        }
+      
+        /* Responsivo: 2 imagens por linha em tablets */
+        @media (min-width: 768px) and (max-width: 992px){
+            .photo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(213px, 1fr));
+                grid-gap: 20px;
+                max-width: 768px;
+                margin: 50px auto 0;
+            }
+        }
+      
+        /* Responsivo: 1 imagem por linha em smartphones */
+        @media (max-width: 767px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+                grid-gap: 20px;
+                max-width: 300px;
+                margin: 30px auto 0;
+            }
+        }
+        /* Responsivo: 2 imagens por linha em tablets */
+        @media (min-width:768px) and (max-width: 992px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
