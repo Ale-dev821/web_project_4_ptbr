@@ -17,6 +17,9 @@ editButton.addEventListener('click', () => {
 });
 
 saveProfileButton.addEventListener('click', () => {
+    console.log('Valor de profileName:', profileName.value);
+    console.log('Valor de profileAbout:', profileAbout.value);
+
     document.querySelector('.title-intro').textContent = profileName.value;
     document.querySelector('.subtitle-intro').textContent = profileAbout.value;
     editProfilePopup.style.display = 'none';

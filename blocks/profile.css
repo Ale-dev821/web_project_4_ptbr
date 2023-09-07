@@ -83,7 +83,7 @@ body {
                 width: 100%;
                 max-width: 24px;
                 height: 24px;
-                background: url(images/Edit\ Button.png);
+                background: url(../images/Edit\ Button.png);
                 background-size: cover;
                 border: none;
                 cursor: pointer;
@@ -92,7 +92,7 @@ body {
                 margin-left: 400px;
             }
             .edit-button.active {
-                background-image: url(images/Edit\ Button\ trasition.png)
+                background-image: url(../images/Edit\ Button\ trasition.png);
             }
 
             .popup {
@@ -147,7 +147,7 @@ body {
                 background: transparent;
                 border: none;
                 cursor: pointer;
-                background-image: url(images/Close\ Icon.png);
+                background-image: url(../images/Close\ Icon.png);
                 max-width: 33px;
                 width: 100%;
                 height: 33px;
@@ -176,7 +176,7 @@ body {
                 border: 1px solid #000000;
             }
             #saveProfileButton {
-                background-image: url(images/Rectangle-save.png);
+                background-image: url(../images/Rectangle-save.png);
                 font-family: 'Inter', sans-serif;
                 font-size: 18px;
                 font-weight: 400;
@@ -191,6 +191,7 @@ body {
                 left: 461px;
                 border-radius: 2px;
                 margin-top: 40px;
+                cursor: pointer;
             }
             .add-button {
                 background-color: transparent;
@@ -198,7 +199,7 @@ body {
                 max-width: 150px;
                 width: 100%;
                 height: 50px;
-                background-image: url(images/Add\ Button.png);
+                background-image: url(../images/Add\ Button.png);
                 background-size: cover;
                 cursor: pointer;
                 transition: background-image 0.3s ease;
@@ -206,7 +207,7 @@ body {
                 margin: auto;
             }
             .add-button:hover {
-                background-image: url('images/add-button-active.png');
+                background-image: url(../images/add-button-active.png);
             }
 
             /* Estilos para o pop-up quando aberto */
