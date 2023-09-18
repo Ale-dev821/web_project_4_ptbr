@@ -85,10 +85,104 @@ imageButtons.forEach(button => {
     });
 });
 
-const addButtons = document.querySelectorAll('.add-button');
 
-addButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('active');
+
+
+
+
+const addButton = document.querySelector('.add-button');
+const addPopup = document.querySelector('.add-popup');
+const addItemButton = document.getElementById('addItemButton');
+const closeAddPopupButton = document.getElementById('closeAddPopupButton');
+const imageElement = document.querySelector('.gallery-image');
+const itemTitle = document.querySelector('#itemTitle');
+const itemLink = document.querySelector('#itemLink');
+
+addButton.addEventListener('click', () => {
+    openAddPopup();
+});
+
+addItemButton.addEventListener('click', () => {
+    closeAddPopup();
+});
+
+closeAddPopupButton.addEventListener('click', () => {
+    closeAddPopup();
+});
+
+function openAddPopup() {
+    addPopup.style.display = 'block';
+}
+
+function closeAddPopup() {
+    addPopup.style.display = 'none';
+}
+
+addButton.addEventListener('click', () => {
+  itemTitle.value = document.querySelector('itemTitle').textContent;
+});
+
+addItemButton.addEventListener('click', () => {
+  console.log('Valor de itemTitle:', itemTitle.value);
+  console.log('Valor de itemLink:', itemLink.value);
+
+  document.querySelector('.group-text').textContent = itemTitle.value;
+  document.querySelector('.gallery-image').textContent = itemLink.value;
+  addPopup.style.display = 'none';
+});
+
+addItemButton.addEventListener('click', () => {
+  const novoTitulo = itemTitle.value;
+  const novoLink = itemLink.value;
+
+  if (novoTitulo && novoLink) {
+    const galleryImage = document.querySelector('.gallery-image');
+
+    galleryImage.src = novoLink;
+
+    galleryImage.alt = novoTitulo;
+
+    document.querySelector('.group-text').textContent = novoTitulo;
+
+    addPopup.style.display = 'none';
+  } else {
+    console.log('Preencha todos os campos corretamente.');
+  }
+});
+
+// Função para remover um cartão
+function removerCartao(event) {
+  const botaoExclusao = event.target;
+  const groupImage = botaoExclusao.closest('.group-image');
+
+  if (groupImage) {
+    groupImage.remove(); 
+  }
+}
+
+const botoesExclusao = document.querySelectorAll('.delete-button');
+
+botoesExclusao.forEach((botao) => {
+  botao.addEventListener('click', removerCartao);
+});
+
+const galleryImages = document.querySelectorAll(".gallery-image");
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightbox-image");
+const closeButton = document.getElementById("close-button");
+
+galleryImages.forEach(function (galleryImage) {
+    galleryImage.addEventListener("click", function () {
+        lightbox.style.display = "block";
+        lightboxImage.src = this.src;
+
+        lightboxImage.style.maxWidth = "90%";
+        lightboxImage.style.maxHeight = "90vh"; // 90% da altura da janela
     });
 });
+
+closeButton.addEventListener("click", function () {
+    lightbox.style.display = "none";
+});
+
+

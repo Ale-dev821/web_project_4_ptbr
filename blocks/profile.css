@@ -137,10 +137,9 @@ body {
                 background: #fff;
                 padding: 30px;
                 border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                 max-width: 430px;
-                width: 100%;
                 max-height: 330px;
+                box-shadow: 0px 0px 25px 0px #00000026;
             }
             .close-button {
                 position: absolute;
@@ -193,6 +192,20 @@ body {
                 margin-top: 40px;
                 cursor: pointer;
             }
+            .add-popup {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                max-width: 430px;
+                width: 100%;
+                top: 195px;
+                left: 425px;
+                border-radius: 10px;
+            }
             .add-button {
                 background-color: transparent;
                 border: 2px solid #FFFFFF;
@@ -208,6 +221,42 @@ body {
             }
             .add-button:hover {
                 background-image: url(../images/add-button-active.png);
+            }
+            #itemTitle {
+                max-width: 358px;
+                width: 100%;
+                height: 27.255207061767578px;
+                top: 306px;
+                left: 461px;
+                border: 1px solid #000000;
+                margin-top: 30px;
+            }
+            #itemLink {
+                max-width: 358px;
+                width: 100%;
+                height: 27.337236404418945px;
+                top: 363px;
+                left: 461px;
+                margin-top: 20px;
+                border: 1px solid #000000;
+            }
+            #addItemButton {
+                background-image: url(../images/Rectangle-save.png);
+                font-family: 'Inter', sans-serif;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 22px;
+                letter-spacing: 0em;
+                text-align: center;
+                color: #FFFFFF;
+                max-width: 358px;
+                width: 100%;
+                height: 50.1519775390625px;
+                top: 438.337158203125px;
+                left: 461px;
+                border-radius: 2px;
+                margin-top: 40px;
+                cursor: pointer;
             }
 
             /* Estilos para o pop-up quando aberto */
