@@ -217,14 +217,14 @@ body {
             .add-button:hover {
                 background-image: url(../images/add-button-active.png);
             }
-            .addPopup__overlay {
+            .add-popup__overlay {
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
             }
 
-            .addPopup__container {
+            .add-popup__container {
                 background: #fff;
                 padding: 30px;
                 border-radius: 10px;
