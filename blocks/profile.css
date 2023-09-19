@@ -81,7 +81,6 @@ body {
                 position: absolute;
                 max-width: 24px;
                 width: 100%;
-                max-width: 24px;
                 height: 24px;
                 background: url(../images/Edit\ Button.png);
                 background-size: cover;
@@ -98,8 +97,6 @@ body {
             .popup {
                 display: none;
                 position: fixed;
-                top: 0;
-                left: 0;
                 z-index: 1000;
                 justify-content: center;
                 align-items: center;
