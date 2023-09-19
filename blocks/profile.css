@@ -217,6 +217,21 @@ body {
             .add-button:hover {
                 background-image: url(../images/add-button-active.png);
             }
+            .addPopup__overlay {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .addPopup__container {
+                background: #fff;
+                padding: 30px;
+                border-radius: 10px;
+                max-width: 430px;
+                max-height: 330px;
+                box-shadow: 0px 0px 25px 0px #00000026;
+            }
             #itemTitle {
                 max-width: 358px;
                 width: 100%;
