@@ -17,9 +17,6 @@ editButton.addEventListener('click', () => {
 });
 
 saveProfileButton.addEventListener('click', () => {
-    console.log('Valor de profileName:', profileName.value);
-    console.log('Valor de profileAbout:', profileAbout.value);
-
     document.querySelector('.title-intro').textContent = profileName.value;
     document.querySelector('.subtitle-intro').textContent = profileAbout.value;
     editProfilePopup.style.display = 'none';
@@ -85,11 +82,6 @@ imageButtons.forEach(button => {
     });
 });
 
-
-
-
-
-
 const addButton = document.querySelector('.add-button');
 const addPopup = document.querySelector('.add-popup');
 const addItemButton = document.getElementById('addItemButton');
@@ -123,19 +115,16 @@ addButton.addEventListener('click', () => {
 });
 
 addItemButton.addEventListener('click', () => {
-  console.log('Valor de itemTitle:', itemTitle.value);
-  console.log('Valor de itemLink:', itemLink.value);
-
   document.querySelector('.group-text').textContent = itemTitle.value;
   document.querySelector('.gallery-image').textContent = itemLink.value;
   addPopup.style.display = 'none';
 });
 
 addItemButton.addEventListener('click', () => {
-  const novoTitulo = itemTitle.value;
-  const novoLink = itemLink.value;
+  const newTitle = itemTitle.value;
+  const newLink = itemLink.value;
 
-  if (novoTitulo && novoLink) {
+  if (newTitle && newLink) {
     const galleryImage = document.querySelector('.gallery-image');
 
     galleryImage.src = novoLink;
@@ -146,12 +135,11 @@ addItemButton.addEventListener('click', () => {
 
     addPopup.style.display = 'none';
   } else {
-    console.log('Preencha todos os campos corretamente.');
   }
 });
 
 // Função para remover um cartão
-function removerCartao(event) {
+function removeCart(event) {
   const botaoExclusao = event.target;
   const groupImage = botaoExclusao.closest('.group-image');
 
@@ -163,7 +151,7 @@ function removerCartao(event) {
 const botoesExclusao = document.querySelectorAll('.delete-button');
 
 botoesExclusao.forEach((botao) => {
-  botao.addEventListener('click', removerCartao);
+  botao.addEventListener('click', removeCart);
 });
 
 const galleryImages = document.querySelectorAll(".gallery-image");
