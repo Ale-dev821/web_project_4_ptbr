@@ -33,6 +33,20 @@ function checkLocalStorage() {
   }
   
   function openEditPopup() {
+    var editProfilePopup = document.getElementById('editProfilePopup');
+    editProfilePopup.classList.toggle('popup-enter');
+    editProfilePopup.style.display = 'block';
+  }
+  
+  function closeEditPopup() {
+    var editProfilePopup = document.getElementById('editProfilePopup');
+    editprofilePopup.classList.toggle('popup-exit');
+    setTimeout(function() {
+      editProfilePopup.style.display = 'none';
+      Popup.classList.remove('popup-enter', 'popup-exit');
+    }, 500);
+  }
+  function openEditPopup() {
     document.getElementById('editProfilePopup').classList.add('popup_opened');
   }
   
@@ -74,14 +88,6 @@ function closeEditProfilePopup() {
 editButton.addEventListener('click', openEditProfilePopup);
 closePopupButton.addEventListener('click', closeEditProfilePopup);
 
-const imageButtons = document.querySelectorAll('.button-like');
-
-imageButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('active');
-    });
-});
-
 const addButton = document.querySelector('.add-button');
 const addPopup = document.querySelector('.add-popup');
 const addItemButton = document.getElementById('addItemButton');
@@ -103,11 +109,18 @@ closeAddPopupButton.addEventListener('click', () => {
 });
 
 function openAddPopup() {
-    addPopup.style.display = 'block';
+  var addPopup = document.getElementById('addPopup');
+  addPopup.classList.toggle('popup-enter');
+  addPopup.style.display = 'block';
 }
 
 function closeAddPopup() {
+  var addPopup = document.getElementById('addPopup');
+  addPopup.classList.toggle('popup-exit');
+  setTimeout(function() {
     addPopup.style.display = 'none';
+    addPopup.classList.remove('popup-enter', 'popup-exit');
+  }, 500);
 }
 
 addButton.addEventListener('click', () => {
@@ -127,15 +140,74 @@ addItemButton.addEventListener('click', () => {
   if (newTitle && newLink) {
     const galleryImage = document.querySelector('.gallery-image');
 
-    galleryImage.src = novoLink;
+    galleryImage.src = newLink;
 
-    galleryImage.alt = novoTitulo;
+    galleryImage.alt = newTitle;
 
-    document.querySelector('.group-text').textContent = novoTitulo;
+    document.querySelector('.group-text').textContent = newTitle;
 
     addPopup.style.display = 'none';
   } else {
   }
+});
+
+// Enviar a imagem do servidor externo do JavaScript para o HTML
+const initialCards = [
+  {
+    name: "Vale de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg"
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg"
+  },
+  {
+    name: "Montanhas Carecas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg"
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg"
+  },
+  {
+    name: "Parque Nacional da Vanoise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg"
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg"
+  }
+];
+
+// Função para preencher as imagens a partir de initialCards
+function fillImages() {
+  const photoGrid = document.getElementById('photoGrid');
+  photoGrid.innerHTML = ''; // Limpa o conteúdo atual
+  
+  initialCards.forEach(card => {
+    const groupImageHTML = `
+      <div class="group-image">
+        <img class="gallery-image" src="${card.link}" alt="${card.name}" data-type="auto">
+        <p class="group-text">${card.name}</p>
+        <button class="button-like" data-default="" data-hover="" data-active=""></button>
+        <button class="delete-button" data-active=""></button>
+      </div>
+    `;
+    
+    photoGrid.innerHTML += groupImageHTML;
+  });
+}
+
+// Chame a função para preencher as imagens
+fillImages();
+;
+
+const imageButtons = document.querySelectorAll('.button-like');
+
+imageButtons.forEach(button => {
+    button.addEventListener('click', () => {
+    button.classList.toggle('active');
+    });
 });
 
 // Função para remover um cartão
@@ -160,17 +232,15 @@ const lightboxImage = document.getElementById("lightbox-image");
 const closeButton = document.getElementById("close-button");
 
 galleryImages.forEach(function (galleryImage) {
-    galleryImage.addEventListener("click", function () {
-        lightbox.style.display = "block";
-        lightboxImage.src = this.src;
+  galleryImage.addEventListener("click", function () {
+    lightbox.style.display = "block";
+    lightboxImage.src = this.src;
 
-        lightboxImage.style.maxWidth = "90%";
-        lightboxImage.style.maxHeight = "90vh"; // 90% da altura da janela
-    });
+    lightboxImage.style.maxWidth = "90%";
+    lightboxImage.style.maxHeight = "90vh";
+  });
 });
 
 closeButton.addEventListener("click", function () {
     lightbox.style.display = "none";
 });
-
-

@@ -38,15 +38,15 @@
                     <div class="add-popup__container">
                         <h2 class="add-popup__title">Novo local</h2>
                         <label for="itemTitle"></label>
-                        <input type="text" id="itemTitle" placeholder="Título">
+                        <input type="text" id="itemTitle" placeholder="Título" required>
                         <label for="itemLink"></label>
-                        <textarea id="itemLink" placeholder="Link de imagem"></textarea>
+                        <input type= "url" id="itemLink" placeholder="Link de imagem" required>
                         <button id="addItemButton">Criar</button>
                     </div>
                     <button id="closeAddPopupButton" class="close-button"></button>
                 </div>
             </section>
-            <section class="photo-grid">
+            <section class="photo-grid" id="photoGrid">
                 <div class="group-image">
                     <img class="gallery-image" src="images/vale-de-yosemite.jpg" alt="Imagem do vale de Yosemite, natureza e rio sobre a paisagem" data-type="auto">
                     <p class="group-text">Vale de Yosemite</p>
