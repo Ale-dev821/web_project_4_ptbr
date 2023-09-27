@@ -193,10 +193,6 @@
     top: 195px;
     left: 575px;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 .add-button {
     background-color: transparent;
