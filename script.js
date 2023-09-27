@@ -127,13 +127,13 @@ closeAddPopupButton.addEventListener("click", () => {
 });
 
 function openAddPopup() {
-  var addPopup = document.getElementById("addPopup");
+  const addPopup = document.getElementById("addPopup");
   addPopup.classList.toggle("popup-enter");
   addPopup.style.display = "block";
 }
 
 function closeAddPopup() {
-  var addPopup = document.getElementById("addPopup");
+  const addPopup = document.getElementById("addPopup");
   addPopup.classList.toggle("popup-exit");
   setTimeout(function () {
     addPopup.style.display = "none";
