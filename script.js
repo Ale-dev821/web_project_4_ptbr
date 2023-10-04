@@ -271,3 +271,156 @@ closeButton.addEventListener("click", function () {
   lightbox.style.display = "none";
 });
 
+const form = document.getElementById('form');
+const campos = document.querySelectorAll('.required');
+const spans = document.querySelectorAll('.span-required');
+
+function setError(index) {
+  campos[index].style.border = '1px solid #FF0000';
+  spans[index].style.display = 'block';
+}
+
+function removeError(index) {
+  campos[index].style.border = '';
+  spans[index].style.display = 'none';
+}
+function nameValidate() {
+  if (campos[0].value.length < 2 || campos[0].value.length > 40) {
+    setError(0);
+    return false;
+  } else {
+    removeError(0);
+    return true;
+  }
+}
+
+function aboutValidate() {
+  if (campos[1].value.length < 2 || campos[1].value.length > 200) {
+    setError(1);
+    return false;
+  } else {
+    removeError(1);
+    return true;
+  }
+}
+function validateForm() {
+  const isNameValid = nameValidate();
+  const isAboutValid = aboutValidate();
+
+  if (isNameValid && isAboutValid) {
+    alert('Formulário válido. Você pode prosseguir.');
+  } else {
+    alert('Por favor, corrija os erros no formulário.');
+  }
+}
+
+form.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  validateForm();
+});
+function validateTitle() {
+  if (campos[2].value.length < 2 || campos[2].value.length > 30) {
+    setError(2);
+    return false;
+  } else {
+    removeError(2);
+    return true;
+  }
+}
+
+function validateLink() {
+  const linkValue = campos[3].value.trim();
+  if (!isValidURL(linkValue)) {
+    setError(3);
+    return false;
+  } else {
+    removeError(3);
+    return true;
+  }
+}
+
+function isValidURL(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function validateForm() {
+  const isTitleValid = validateTitle();
+  const isLinkValid = validateLink();
+
+  if (isTitleValid && isLinkValid) {
+    alert('Formulário válido. Você pode prosseguir.');
+  } else {
+    alert('Por favor, corrija os erros no formulário.');
+  }
+}
+
+form.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  validateForm();
+});
+
+const formElement = document.getElementById('addPopup');
+const formElements = document.getElementById('editProfilePopup')
+const inputElements = formElement.querySelectorAll('.required');
+const errorSpans = formElement.querySelectorAll('.span-required');
+const submitButton = formElement.querySelector('#addItemButton');
+const submitButtons = formElement.querySelector('#saveProfileButton')
+
+const showInputError = (inputElement, errorMessage) => {
+  const errorSpan = inputElement.nextElementSibling;
+  inputElement.classList.add('form__input_type_error');
+  errorSpan.textContent = errorMessage;
+  errorSpan.classList.add('form__input-error_active');
+};
+
+const hideInputError = (inputElement) => {
+  const errorSpan = inputElement.nextElementSibling;
+  inputElement.classList.remove('form__input_type_error');
+  errorSpan.classList.remove('form__input-error_active');
+  errorSpan.textContent = '';
+};
+
+const checkInputValidity = (inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(inputElement);
+  }
+};
+
+const setEventListeners = () => {
+  inputElements.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+      checkInputValidity(inputElement);
+      checkFormValidity();
+    });
+  });
+};
+
+const checkFormValidity = () => {
+  const isFormValid = Array.from(inputElements).every((inputElement) => inputElement.validity.valid);
+  submitButton.disabled = !isFormValid;
+};
+
+setEventListeners();
+
+formElement.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+});
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll(".form"));
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", function (evt) {
+      evt.preventDefault();
+    });
+
+    setEventListeners(formElement);
+  });
+};
+
+enableValidation();

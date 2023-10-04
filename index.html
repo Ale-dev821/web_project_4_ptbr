@@ -21,14 +21,17 @@
                     <h2 class="subtitle-intro">Explorar</h2>
                 </div>
                 <button class="add-button" data-hover="hover.png"></button>
+                <form id="form" novalidate>
                 <div class="popup" id="editProfilePopup">
                     <div class="popup__overlay"></div>
                     <div class="popup__container" id="popupContainer">
                         <h2 class="title-edit">Editar Perfil</h2>
                         <label for="profileName"></label>
-                        <input type="text" id="profileName" placeholder="Nome">
+                        <input type="text" id="profileName" placeholder="Nome" class="required" oninput="nameValidate()">
+                        <span class="span-required">Por favor, preencha esse campo</span>
                         <label for="profileAbout"></label>
-                        <textarea id="profileAbout" placeholder="Sobre Mim"></textarea>
+                        <input id="profileAbout" placeholder="Sobre Mim" class="required" oninput="aboutValidate()">
+                        <span class="span-required">Por favor, preencha esse campo</span>
                         <button id="saveProfileButton">Salvar</button>
                     </div>
                     <button id="closePopupButton" class="close-button"></button>
@@ -38,13 +41,16 @@
                     <div class="add-popup__container">
                         <h2 class="add-popup__title">Novo local</h2>
                         <label for="itemTitle"></label>
-                        <input type="text" id="itemTitle" placeholder="Título" required>
+                        <input type="text" id="itemTitle" placeholder="Título" class= "required" oninput="validateTitle()">
+                        <span class="span-required">Preencha esse campo.</span>
                         <label for="itemLink"></label>
-                        <input type= "url" id="itemLink" placeholder="Link de imagem" required>
+                        <input type= "url" id="itemLink" placeholder="Link de imagem" class= "required" oninput="validateLink()">
+                        <span class="span-required">Por favor, insira um endereço web.</span>
                         <button id="addItemButton">Criar</button>
                     </div>
                     <button id="closeAddPopupButton" class="close-button"></button>
                 </div>
+                </form>
             </section>
             <section class="photo-grid" id="photoGrid">
                 <template id="imageTemplate">
