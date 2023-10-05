@@ -140,6 +140,18 @@ function closeAddPopup() {
     addPopup.classList.remove("popup-enter", "popup-exit");
   }, 500);
 }
+let isAddPopupOpen = false;
+function openAddPopup() {
+  addPopup.classList.add('popup-enter');
+  addPopup.style.display = 'block';
+  isAddPopupOpen = true;
+}
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape' && isAddPopupOpen) {
+    closeAddPopup();
+  }
+});
 
 addButton.addEventListener("click", () => {
   itemTitle.value = document.querySelector("itemTitle").textContent;
