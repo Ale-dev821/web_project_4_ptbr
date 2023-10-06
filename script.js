@@ -9,6 +9,12 @@ const closePopupButton = document.querySelector(".close-button");
 const saveProfileButton = document.querySelector("#saveProfileButton");
 const profileName = document.querySelector("#profileName");
 const profileAbout = document.querySelector("#profileAbout");
+const formElement = document.getElementById('addPopup');
+const formElements = document.getElementById('editProfilePopup')
+const inputElements = formElement.querySelectorAll('.required');
+const errorSpans = formElement.querySelectorAll('.span-required');
+const submitButton = formElement.querySelector('#addItemButton');
+const submitButtons = formElement.querySelector('#saveProfileButton')
 
 editButton.addEventListener("click", () => {
   profileName.value = document.querySelector(".title-intro").textContent;
@@ -140,6 +146,7 @@ function closeAddPopup() {
     addPopup.classList.remove("popup-enter", "popup-exit");
   }, 500);
 }
+
 let isAddPopupOpen = false;
 function openAddPopup() {
   addPopup.classList.add('popup-enter');
@@ -147,9 +154,19 @@ function openAddPopup() {
   isAddPopupOpen = true;
 }
 
+function closeAnyPopup() {
+  const popups = document.querySelectorAll('.popup-enter');
+  popups.forEach((popup) => {
+    popup.classList.remove('popup-enter');
+    popup.style.display = 'none';
+  });
+  isAddPopupOpen = false;
+  ispopupContainerOpen = false;
+}
+
 document.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape' && isAddPopupOpen) {
-    closeAddPopup();
+  if (event.key === 'Escape') {
+    closeAnyPopup();
   }
 });
 
@@ -315,21 +332,7 @@ function aboutValidate() {
     return true;
   }
 }
-function validateForm() {
-  const isNameValid = nameValidate();
-  const isAboutValid = aboutValidate();
 
-  if (isNameValid && isAboutValid) {
-    alert('Formulário válido. Você pode prosseguir.');
-  } else {
-    alert('Por favor, corrija os erros no formulário.');
-  }
-}
-
-form.addEventListener('submit', function (evt) {
-  evt.preventDefault();
-  validateForm();
-});
 function validateTitle() {
   if (campos[2].value.length < 2 || campos[2].value.length > 30) {
     setError(2);
@@ -360,28 +363,25 @@ function isValidURL(url) {
   }
 }
 
-function validateForm() {
+form.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  
+  const isNameValid = nameValidate();
+  const isAboutValid = aboutValidate();
   const isTitleValid = validateTitle();
   const isLinkValid = validateLink();
 
-  if (isTitleValid && isLinkValid) {
+  if (isNameValid && isAboutValid && isTitleValid && isLinkValid) {
     alert('Formulário válido. Você pode prosseguir.');
   } else {
     alert('Por favor, corrija os erros no formulário.');
   }
-}
+});
 
 form.addEventListener('submit', function (evt) {
   evt.preventDefault();
   validateForm();
 });
-
-const formElement = document.getElementById('addPopup');
-const formElements = document.getElementById('editProfilePopup')
-const inputElements = formElement.querySelectorAll('.required');
-const errorSpans = formElement.querySelectorAll('.span-required');
-const submitButton = formElement.querySelector('#addItemButton');
-const submitButtons = formElement.querySelector('#saveProfileButton')
 
 const showInputError = (inputElement, errorMessage) => {
   const errorSpan = inputElement.nextElementSibling;
