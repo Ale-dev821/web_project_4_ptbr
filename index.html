@@ -1,76 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="pages/index.css" />
     <title>EUA afora</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="page">
-        <main>
-            <header class="header">
-                <img class="logo logo_place_header" src="images/logo-header.png" alt="Logotipo do Cabeçalho">
-                <div class="logo-line"></div>
-            </header>
-            <section class="profile">
-                <img class="avatar" src="images/Avatar.png" alt="Imagem do avatar a ser adicionado">
-                <div class="profile-intro">
-                    <button class="edit-button" data-active="active.png"></button>
-                    <h1 class="title-intro">Jacques Cousteau</h1>
-                    <h2 class="subtitle-intro">Explorar</h2>
-                </div>
-                <button class="add-button" data-hover="hover.png"></button>
-                <form id="form" novalidate>
-                <div class="popup" id="editProfilePopup">
-                    <div class="popup__overlay"></div>
-                    <div class="popup__container" id="popupContainer">
-                        <h2 class="title-edit">Editar Perfil</h2>
-                        <label for="profileName"></label>
-                        <input type="text" id="profileName" placeholder="Nome" class="required" minlength="2" maxlength="40" oninput="nameValidate()">
-                        <span class="span-required">Por favor, preencha esse campo</span>
-                        <label for="profileAbout"></label>
-                        <input id="profileAbout" placeholder="Sobre Mim" class="required" minlength="2" maxlength="200" oninput="aboutValidate()">
-                        <span class="span-required">Por favor, preencha esse campo</span>
-                        <button id="saveProfileButton">Salvar</button>
-                    </div>
-                    <button id="closePopupButton" class="close-button"></button>
-                </div>
-                <div id="addPopup" class="add-popup">
-                    <div class="add-popup__overlay"></div>
-                    <div class="add-popup__container">
-                        <h2 class="add-popup__title">Novo local</h2>
-                        <label for="itemTitle"></label>
-                        <input type="text" id="itemTitle" placeholder="Título" class= "required" minlength="2" maxlength="30" oninput="validateTitle()">
-                        <span class="span-required">Preencha esse campo.</span>
-                        <label for="itemLink"></label>
-                        <input type= "url" id="itemLink" placeholder="Link de imagem" class= "required" oninput="validateLink()">
-                        <span class="span-required">Por favor, insira um endereço web.</span>
-                        <button id="addItemButton">Criar</button>
-                    </div>
-                    <button id="closeAddPopupButton" class="close-button"></button>
-                </div>
-                </form>
-            </section>
-            <section class="photo-grid" id="photoGrid">
-                <template id="imageTemplate">
-                    <div class="group-image">
-                        <img class="gallery-image" data-type="auto">
-                        <p class="group-text"></p>
-                        <button class="button-like" data-default="" data-hover="" data-active=""></button>
-                        <button class="delete-button" data-active=""></button>
-                    </div>
-                </template>
-            </section>
-            <div id="lightbox" class="hidden">
-                <img id="lightbox-image" alt="Imagem a ser careregada pelo usuario">
-                <button id="close-button"></button>
+      <main>
+        <header class="header">
+          <img
+            class="logo logo_place_header"
+            src="images/logo-header.png"
+            alt="Logotipo do Cabeçalho"/>
+          <div class="logo-line"></div>
+        </header>
+        <section class="profile">
+          <img
+            class="avatar"
+            src="images/Avatar.png"
+            alt="Imagem do avatar a ser adicionado"
+          />
+          <div class="profile-intro">
+            <button class="edit-button" data-active="active.png"></button>
+            <h1 class="title-intro" minlength="2" maxlength="40"></h1>
+            <h2 class="subtitle-intro" minlength="2" maxlength="200"></h2>
+          </div>
+          <button class="add-button" data-hover="hover.png"></button>
+          <form id="form" novalidate>
+            <div class="popup" id="editProfilePopup">
+              <div class="popup__overlay"></div>
+              <div class="popup__container" id="popupContainer">
+                <h2 class="title-edit">Editar Perfil</h2>
+                <label for="profileName"></label>
+                <input
+                  type="text"
+                  id="profileName"
+                  placeholder="Nome"
+                  class="required"
+                  minlength="2"
+                  maxlength="40"
+                  oninput="nameValidate()"
+                />
+                <span class="span-required"
+                  >Por favor, preencha esse campo</span
+                >
+                <label for="profileAbout"></label>
+                <input
+                  id="profileAbout"
+                  placeholder="Sobre Mim"
+                  class="required"
+                  minlength="2"
+                  maxlength="200"
+                  oninput="aboutValidate()"
+                />
+                <span class="span-required"
+                  >Por favor, preencha esse campo</span
+                >
+                <button id="saveProfileButton">Salvar</button>
+              </div>
+              <button id="closePopupButton" class="close-button"></button>
             </div>
-        </main>
+            <div id="addPopup" class="add-popup">
+              <div class="add-popup__overlay"></div>
+              <div class="add-popup__container">
+                <h2 class="add-popup__title">Novo local</h2>
+                <label for="itemTitle"></label>
+                <input
+                  type="text"
+                  id="itemTitle"
+                  placeholder="Título"
+                  class="required"
+                  minlength="2"
+                  maxlength="30"
+                  oninput="validateTitle()"
+                />
+                <span class="span-required">Preencha esse campo.</span>
+                <label for="itemLink"></label>
+                <input
+                  type="url"
+                  id="itemLink"
+                  placeholder="Link de imagem"
+                  class="required"
+                  oninput="validateLink()"
+                />
+                <span class="span-required"
+                  >Por favor, insira um endereço web.</span
+                >
+                <button id="addItemButton">Criar</button>
+              </div>
+              <button id="closeAddPopupButton" class="close-button"></button>
+            </div>
+          </form>
+        </section>
+        <section class="photo-grid" id="photoGrid">
+          <template id="imageTemplate">
+            <div class="group-image">
+              <img class="gallery-image" data-type="auto" />
+              <p class="group-text"></p>
+              <button
+                class="button-like"
+                data-default=""
+                data-hover=""
+                data-active=""
+              ></button>
+              <button class="delete-button" data-active=""></button>
+            </div>
+          </template>
+        </section>
+        <div id="lightbox" class="hidden">
+          <img id="lightbox-image" alt="Imagem a ser careregada pelo usuario" />
+          <button id="close-button"></button>
+        </div>
+      </main>
     </div>
-    <footer class="footer">
-        © 2021 Around The U.S.
-    </footer>
+    <footer class="footer">© 2021 Around The U.S.</footer>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

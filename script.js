@@ -22,8 +22,15 @@ editButton.addEventListener("click", () => {
 });
 
 saveProfileButton.addEventListener("click", () => {
-  document.querySelector(".title-intro").textContent = profileName.value;
-  document.querySelector(".subtitle-intro").textContent = profileAbout.value;
+  const newName = profileName.value;
+  const newAbout = profileAbout.value;
+
+  if (nameValidate(newName) && aboutValidate(newAbout)) {
+    // Apenas atualize os elementos HTML se os valores forem válidos
+    document.querySelector(".title-intro").textContent = newName;
+    document.querySelector(".subtitle-intro").textContent = newAbout;
+  }
+
   editProfilePopup.style.display = "none";
 });
 
@@ -31,9 +38,12 @@ function checkLocalStorage() {
   const savedName = localStorage.getItem("profileName");
   const savedAbout = localStorage.getItem("profileAbout");
 
-  if (savedName) {
-    document.querySelector(".title-intro").textContent = savedName;
-    document.querySelector(".profile-intro h2").textContent = savedAbout;
+  if (savedName && savedAbout) {
+    // Verificar se os valores salvos atendem aos critérios de validação antes de sobrescrever os elementos HTML
+    if (nameValidate(savedName) && aboutValidate(savedAbout)) {
+      document.querySelector(".title-intro").textContent = savedName;
+      document.querySelector(".subtitle-intro").textContent = savedAbout;
+    }
   }
 }
 
@@ -71,20 +81,18 @@ function openEditPopup() {
 }
 
 function saveProfile() {
+  const isNameValid = nameValidate();
+  const isAboutValid = aboutValidate();
   const newName = document.getElementById("profileName").value;
   const newAbout = document.getElementById("profileAbout").value;
 
-  if (newName) {
+  if (isNameValid && isAboutValid && newName && newAbout) {
     document.querySelector(".title-intro").textContent = newName;
+    document.querySelector(".subtitle-intro").textContent = newAbout;
     localStorage.setItem("profileName", newName);
-  }
-
-  if (newAbout) {
-    document.querySelector(".profile-intro h2").textContent = newAbout;
     localStorage.setItem("profileAbout", newAbout);
+    closeEditPopup();
   }
-
-  closeEditPopup();
 }
 
 function closeEditPopup() {
@@ -175,25 +183,29 @@ addButton.addEventListener("click", () => {
 });
 
 addItemButton.addEventListener("click", () => {
-  document.querySelector(".group-text").textContent = itemTitle.value;
-  document.querySelector(".gallery-image").textContent = itemLink.value;
-  addPopup.style.display = "none";
-});
-
-addItemButton.addEventListener("click", () => {
   const newTitle = itemTitle.value;
   const newLink = itemLink.value;
 
   if (newTitle && newLink) {
-    const galleryImage = document.querySelector(".gallery-image");
+    const template = document.querySelector("#imageTemplate");
+    const newCard = document.importNode(template.content, true);
 
-    galleryImage.src = newLink;
+    const img = newCard.querySelector(".gallery-image");
+    img.src = newLink;
+    img.alt = newTitle;
 
-    galleryImage.alt = newTitle;
+    const text = newCard.querySelector(".group-text");
+    text.textContent = newTitle;
 
-    document.querySelector(".group-text").textContent = newTitle;
+    const photoGrid = document.getElementById("photoGrid");
+    const firstCard = photoGrid.querySelector(".group-image");
 
-    addPopup.style.display = "none";
+    photoGrid.insertBefore(newCard, firstCard);
+
+    itemTitle.value = "";
+    itemLink.value = "";
+
+    closeAddPopup();
   }
 });
 
@@ -260,14 +272,6 @@ function fillImages() {
 
 fillImages();
 
-const imageButtons = document.querySelectorAll(".button-like");
-
-imageButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    button.classList.toggle("active");
-  });
-});
-
 // Função para remover um cartão
 function removeCart(event) {
   const deleteButton = event.target;
@@ -313,6 +317,7 @@ function removeError(index) {
   campos[index].style.border = '';
   spans[index].style.display = 'none';
 }
+
 function nameValidate() {
   if (campos[0].value.length < 2 || campos[0].value.length > 40) {
     setError(0);
@@ -363,20 +368,25 @@ function isValidURL(url) {
   }
 }
 
-form.addEventListener('submit', function (evt) {
-  evt.preventDefault();
-  
-  const isNameValid = nameValidate();
-  const isAboutValid = aboutValidate();
+function validateForm() {
+  const isNameValid = validateName();
+  const isAboutValid = validateAbout();
   const isTitleValid = validateTitle();
   const isLinkValid = validateLink();
 
   if (isNameValid && isAboutValid && isTitleValid && isLinkValid) {
-    alert('Formulário válido. Você pode prosseguir.');
+    // O formulário é válido, você pode prosseguir com o envio dos dados ou outra ação desejada.
   } else {
-    alert('Por favor, corrija os erros no formulário.');
+    // Exiba uma mensagem geral de erro ou ação apropriada, se necessário.
+    // Não salve as informações se houver erros de validação.
   }
+}
+
+formElement.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  validateForm();
 });
+
 
 form.addEventListener('submit', function (evt) {
   evt.preventDefault();
@@ -436,3 +446,17 @@ const enableValidation = () => {
 };
 
 enableValidation();
+
+
+// Create a function that returns a template for a new card
+function createCardTemplate(name, link) {
+  const cardTemplate = `
+    <div class="group-image">
+      <img class="gallery-image" src="${link}" alt="${name}" data-type="auto" />
+      <p class="group-text">${name}</p>
+      <button class="button-like"></button>
+      <button class="delete-button"></button>
+    </div>
+  `;
+  return cardTemplate;
+}
