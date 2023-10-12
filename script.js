@@ -197,6 +197,16 @@ addItemButton.addEventListener("click", () => {
     const text = newCard.querySelector(".group-text");
     text.textContent = newTitle;
 
+    const likeButton = newCard.querySelector(".button-like");
+    likeButton.addEventListener("click", () => {
+      likeButton.classList.toggle("active");
+    });
+
+    const newDeleteButton = newCard.querySelector(".delete-button");
+    newDeleteButton.addEventListener("click", () => {
+      newCard.remove();
+    });
+
     const photoGrid = document.getElementById("photoGrid");
     const firstCard = photoGrid.querySelector(".group-image");
 
@@ -206,6 +216,22 @@ addItemButton.addEventListener("click", () => {
     itemLink.value = "";
 
     closeAddPopup();
+    function removeCart(event) {
+      const deleteButton = event.target;
+      const groupImage = deleteButton.closest(".group-image");
+    
+      if (groupImage) {
+        groupImage.remove();
+      }
+    }
+    
+    const deleteButtons = document.querySelectorAll(".delete-button");
+    
+    deleteButtons.forEach((deleteButton) => {
+      deleteButton.addEventListener("click", removeCart);
+    });
+    const deleteButton = newCard.querySelector(".delete-button");
+    deleteButton.addEventListener("click", removeCart);
   }
 });
 
@@ -237,7 +263,6 @@ const initialCards = [
   },
 ];
 
-// Função para preencher as imagens a partir de initialCards
 function fillImages() {
   const photoGrid = document.getElementById('photoGrid');
 
@@ -258,6 +283,10 @@ function fillImages() {
     const buttonLike = document.createElement('button');
     buttonLike.classList.add('button-like');
     
+    buttonLike.addEventListener('click', () => {
+      buttonLike.classList.toggle('active');
+    });
+    
     const buttonDelete = document.createElement('button');
     buttonDelete.classList.add('delete-button');
     
@@ -265,7 +294,6 @@ function fillImages() {
     groupImage.appendChild(text);
     groupImage.appendChild(buttonLike);
     groupImage.appendChild(buttonDelete);
-    
     photoGrid.appendChild(groupImage);
   });
 }
@@ -288,6 +316,7 @@ deleteButton.forEach((botao) => {
   botao.addEventListener("click", removeCart);
 });
 
+
 const galleryImages = document.querySelectorAll(".gallery-image");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
@@ -305,20 +334,22 @@ closeButton.addEventListener("click", function () {
 });
 
 const form = document.getElementById('form');
-const campos = document.querySelectorAll('.required');
 const spans = document.querySelectorAll('.span-required');
 
 function setError(index) {
+  let campos = document.querySelectorAll('.required');
   campos[index].style.border = '1px solid #FF0000';
   spans[index].style.display = 'block';
 }
 
 function removeError(index) {
+  let campos = document.querySelectorAll('.required');
   campos[index].style.border = '';
   spans[index].style.display = 'none';
 }
 
 function nameValidate() {
+  let campos = document.querySelectorAll('.required');
   if (campos[0].value.length < 2 || campos[0].value.length > 40) {
     setError(0);
     return false;
@@ -329,6 +360,7 @@ function nameValidate() {
 }
 
 function aboutValidate() {
+  let campos = document.querySelectorAll('.required');
   if (campos[1].value.length < 2 || campos[1].value.length > 200) {
     setError(1);
     return false;
@@ -339,6 +371,7 @@ function aboutValidate() {
 }
 
 function validateTitle() {
+  let campos = document.querySelectorAll('.required');
   if (campos[2].value.length < 2 || campos[2].value.length > 30) {
     setError(2);
     return false;
@@ -349,6 +382,7 @@ function validateTitle() {
 }
 
 function validateLink() {
+  let campos = document.querySelectorAll('.required');
   const linkValue = campos[3].value.trim();
   if (!isValidURL(linkValue)) {
     setError(3);
