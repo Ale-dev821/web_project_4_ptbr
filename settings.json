@@ -1,48 +1,27 @@
-{
-    "liveServer.settings.port": 5501
-}
+
 {
     "workbench.colorTheme": "Default Dark Modern",
     "files.autoSave": "afterDelay",
     "workbench.iconTheme": "material-icon-theme",
     "liveServer.settings.donotShowInfoMsg": true,
+    "git.autofetch": true,
+    "workbench.editorAssociations": {
+        "*.html": "default"
+    },
+    "editor.formatOnSave": true,
     "[css]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[html]": {
+    },
+    "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        
-        "[javascript]": {
+    },
+    "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[javascriptreact]": {
+    },
+    "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[json]": {
+    },
+    "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "git.autofetch": true,
-        "workbench.editorAssociations": {
-            "*.html": "default"
-        },
-        "[css]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[javascriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        { "files.autoSave": "onFocusChange", 
-        "editor.formatOnSave": true, 
-        },
-       
+    }
 }

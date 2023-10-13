@@ -179,7 +179,13 @@ document.addEventListener('keydown', function (event) {
 });
 
 addButton.addEventListener("click", () => {
-  itemTitle.value = document.querySelector("itemTitle").textContent;
+  const itemTitleElement = document.querySelector(".itemTitle");
+  
+  if (itemTitleElement) {
+    itemTitle.value = itemTitleElement.textContent;
+  } else {
+    console.log("Elemento .itemTitle não encontrado.");
+  }
 });
 
 addItemButton.addEventListener("click", () => {
@@ -204,7 +210,7 @@ addItemButton.addEventListener("click", () => {
 
     const newDeleteButton = newCard.querySelector(".delete-button");
     newDeleteButton.addEventListener("click", () => {
-      newCard.remove();
+      
     });
 
     const photoGrid = document.getElementById("photoGrid");
@@ -230,8 +236,6 @@ addItemButton.addEventListener("click", () => {
     deleteButtons.forEach((deleteButton) => {
       deleteButton.addEventListener("click", removeCart);
     });
-    const deleteButton = newCard.querySelector(".delete-button");
-    deleteButton.addEventListener("click", removeCart);
   }
 });
 
@@ -338,9 +342,13 @@ const spans = document.querySelectorAll('.span-required');
 
 function setError(index) {
   let campos = document.querySelectorAll('.required');
+  let spans = document.querySelectorAll('.span-required');
   campos[index].style.border = '1px solid #FF0000';
   spans[index].style.display = 'block';
+  console.log('Erro removido para o elemento de índice ' + index);
 }
+setError(0, spans);
+
 
 function removeError(index) {
   let campos = document.querySelectorAll('.required');
@@ -421,10 +429,8 @@ formElement.addEventListener('submit', (evt) => {
   validateForm();
 });
 
-
 form.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  validateForm();
 });
 
 const showInputError = (inputElement, errorMessage) => {
