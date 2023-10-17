@@ -1,9 +1,4 @@
 const editButton = document.querySelector(".edit-button");
-
-editButton.addEventListener("click", () => {
-  editButton.classList.toggle("active");
-});
-
 const editProfilePopup = document.querySelector("#editProfilePopup");
 const closePopupButton = document.querySelector(".close-button");
 const saveProfileButton = document.querySelector("#saveProfileButton");
@@ -16,9 +11,14 @@ const errorSpans = formElement.querySelectorAll('.span-required');
 const submitButton = formElement.querySelector('#addItemButton');
 const submitButtons = formElement.querySelector('#saveProfileButton')
 
+
 editButton.addEventListener("click", () => {
-  profileName.value = document.querySelector(".title-intro").textContent;
-  profileAbout.value = document.querySelector(".subtitle-intro").textContent;
+  editButton.classList.toggle("active");
+  const titleIntro = document.querySelector(".title-intro");
+  const subtitleIntro = document.querySelector(".subtitle-intro");
+  profileName.value = titleIntro.textContent;
+  profileAbout.value = subtitleIntro.textContent;
+  openEditProfilePopup();
 });
 
 saveProfileButton.addEventListener("click", () => {
@@ -26,14 +26,24 @@ saveProfileButton.addEventListener("click", () => {
   const newAbout = profileAbout.value;
 
   if (nameValidate(newName) && aboutValidate(newAbout)) {
-    // Apenas atualize os elementos HTML se os valores forem válidos
-    document.querySelector(".title-intro").textContent = newName;
-    document.querySelector(".subtitle-intro").textContent = newAbout;
+    const titleIntro = document.querySelector(".title-intro");
+    const subtitleIntro = document.querySelector(".subtitle-intro");
+    titleIntro.textContent = newName;
+    subtitleIntro.textContent = newAbout;
+    
+    localStorage.setItem("profileName", newName);
+    localStorage.setItem("profileAbout", newAbout);
+    closeEditProfilePopup();
   }
-
-  editProfilePopup.style.display = "none";
 });
 
+function openEditProfilePopup() {
+  editProfilePopup.style.display = "block";
+}
+
+function closeEditProfilePopup() {
+  editProfilePopup.style.display = "none";
+}
 function checkLocalStorage() {
   const savedName = localStorage.getItem("profileName");
   const savedAbout = localStorage.getItem("profileAbout");
@@ -91,7 +101,7 @@ function saveProfile() {
     document.querySelector(".subtitle-intro").textContent = newAbout;
     localStorage.setItem("profileName", newName);
     localStorage.setItem("profileAbout", newAbout);
-    closeEditPopup();
+  
   }
 }
 
