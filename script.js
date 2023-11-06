@@ -20,6 +20,7 @@ const utils = new Utils();
 new FormValidator("#form").generateValidation()
 
 
+
 editButton.addEventListener("click", () => {
   editButton.classList.toggle("active");
   const titleIntro = document.querySelector(".title-intro");
