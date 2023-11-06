@@ -23,9 +23,9 @@
             alt="Imagem do avatar a ser adicionado"
           />
           <div class="profile-intro">
-            <button class="edit-button" data-active="active.png"></button>
-            <h1 class="title-intro" minlength="2" maxlength="40"></h1>
-            <h2 class="subtitle-intro" minlength="2" maxlength="200"></h2>
+            <button class="edit-button" id="editButtonInsidePopup" data-active="active.png"></button>
+            <h1 class="title-intro" minlength="2" maxlength="40">Jacques Cousteau</h1>
+            <h2 class="subtitle-intro" minlength="2" maxlength="200">Explorar</h2>
           </div>
           <button class="add-button" data-hover="hover.png"></button>
           <form id="form" novalidate>
@@ -110,12 +110,15 @@
           </template>
         </section>
         <div id="lightbox" class="hidden">
-          <img id="lightbox-image" alt="Imagem a ser careregada pelo usuario" />
+          <img id="lightbox-image" alt="Imagem a ser carregada pelo usuario" />
           <button id="close-button"></button>
         </div>
       </main>
     </div>
     <footer class="footer">© 2021 Around The U.S.</footer>
-    <script src="script.js"></script>
+    <script type="module" src="Card.js"></script>
+    <script type="module" src="FormValidator.js"></script>
+    <script type="module" src="Utils.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
