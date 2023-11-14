@@ -41,11 +41,10 @@
                   class="required"
                   minlength="2"
                   maxlength="40"
-                  oninput="nameValidate()"
                 />
-                <span class="span-required"
-                  >Por favor, preencha esse campo</span
-                >
+                <span id="profileNameError" class="span-required">
+                  Por favor, preencha esse campo
+                </span>
                 <label for="profileAbout"></label>
                 <input
                   id="profileAbout"
@@ -53,7 +52,6 @@
                   class="required"
                   minlength="2"
                   maxlength="200"
-                  oninput="aboutValidate()"
                 />
                 <span class="span-required"
                   >Por favor, preencha esse campo</span
@@ -74,7 +72,7 @@
                   class="required"
                   minlength="2"
                   maxlength="30"
-                  oninput="validateTitle()"
+                  oninput=""
                 />
                 <span class="span-required">Preencha esse campo.</span>
                 <label for="itemLink"></label>
@@ -83,7 +81,7 @@
                   id="itemLink"
                   placeholder="Link de imagem"
                   class="required"
-                  oninput="validateLink()"
+                  oninput=""
                 />
                 <span class="span-required"
                   >Por favor, insira um endereço web.</span
@@ -116,9 +114,9 @@
       </main>
     </div>
     <footer class="footer">© 2021 Around The U.S.</footer>
-    <script type="module" src="Card.js"></script>
-    <script type="module" src="FormValidator.js"></script>
-    <script type="module" src="Utils.js"></script>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="./scripts/Card.js"></script>
+    <script type="module" src="./scripts/FormValidator.js"></script>
+    <script type="module" src="./scripts/Utils.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>

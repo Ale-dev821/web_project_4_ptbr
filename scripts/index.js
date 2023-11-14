@@ -1,7 +1,9 @@
-import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
 import Utils from "./Utils.js";
+import FormValidator from "./FormValidator.js";
 
+
+const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
 const editButton = document.querySelector(".edit-button");
 const editProfilePopup = document.querySelector("#editProfilePopup");
 const closePopupButton = document.querySelector(".close-button");
@@ -9,16 +11,11 @@ const saveProfileButton = document.querySelector("#saveProfileButton");
 const profileName = document.querySelector("#profileName");
 const profileAbout = document.querySelector("#profileAbout");
 const formElement = document.getElementById('addPopup');
-const formElements = document.getElementById('editProfilePopup');
 const inputElements = formElement.querySelectorAll('.required');
-const errorSpans = formElement.querySelectorAll('.span-required');
 const submitButton = formElement.querySelector('#addItemButton');
-const submitButtons = formElement.querySelector('#saveProfileButton');
+const form = document.getElementById('form');
 const card = new Card();
-const cardTemplate = card.createTemplate('Nome do Cartão', 'URL da Imagem');
 const utils = new Utils();
-new FormValidator("#form").generateValidation()
-
 
 
 editButton.addEventListener("click", () => {
@@ -356,24 +353,35 @@ closeButton.addEventListener("click", function () {
   lightbox.style.display = "none";
 });
 
-const form = document.getElementById('form');
-const spans = document.querySelectorAll('.span-required');
-
 function setError(index) {
   let campos = document.querySelectorAll('.required');
   let spans = document.querySelectorAll('.span-required');
-  campos[index].style.border = '1px solid #FF0000';
-  spans[index].style.display = 'block';
-  console.log('Erro removido para o elemento de índice ' + index);
+  
+  // Verifique se há um erro no campo específico
+  if (!isValid(index)) {
+      campos[index].style.border = '1px solid #FF0000';
+      spans[index].style.display = 'block';
+      console.log('Erro removido para o elemento de índice ' + index);
+  }
 }
-setError(0, spans);
-
 
 function removeError(index) {
   let campos = document.querySelectorAll('.required');
+  let spans = document.querySelectorAll('.span-required');
+  
+  // Remova o estilo de erro no campo específico
   campos[index].style.border = '';
   spans[index].style.display = 'none';
 }
+
+// Função de validação específica do campo
+function isValid(index) {
+  let campo = document.querySelectorAll('.required')[index];
+  // Implemente a lógica de validação específica do campo aqui
+  // Exemplo: verificar se o valor do campo é válido
+  return campo.value.length >= 2 && campo.value.length <= 40;
+}
+
 
 function nameValidate() {
   let campos = document.querySelectorAll('.required');
@@ -399,49 +407,36 @@ function aboutValidate() {
 
 function validateTitle() {
   let campos = document.querySelectorAll('.required');
-  if (campos[2].value.length < 2 || campos[2].value.length > 30) {
-    setError(2);
-    return false;
-  } else {
-    removeError(2);
-    return true;
-  }
+  return campos[2].value.length >= 2 && campos[2].value.length <= 30;
 }
 
 function validateLink() {
   let campos = document.querySelectorAll('.required');
   const linkValue = campos[3].value.trim();
-  if (!isValidURL(linkValue)) {
-    setError(3);
-    return false;
-  } else {
-    removeError(3);
-    return true;
-  }
+  return isValidURL(linkValue);
 }
 
 function isValidURL(url) {
   try {
-    new URL(url);
-    return true;
+      new URL(url);
+      return true;
   } catch (error) {
-    return false;
+      return false;
   }
 }
 
 function validateForm() {
-  const isNameValid = validateName();
-  const isAboutValid = validateAbout();
   const isTitleValid = validateTitle();
   const isLinkValid = validateLink();
 
-  if (isNameValid && isAboutValid && isTitleValid && isLinkValid) {
-    // O formulário é válido, você pode prosseguir com o envio dos dados ou outra ação desejada.
+  if (isTitleValid && isLinkValid) {
+      // O formulário é válido, você pode prosseguir com o envio dos dados ou outra ação desejada.
   } else {
-    // Exiba uma mensagem geral de erro ou ação apropriada, se necessário.
-    // Não salve as informações se houver erros de validação.
+      // Exiba uma mensagem geral de erro ou ação apropriada, se necessário.
+      // Não salve as informações se houver erros de validação.
   }
 }
+
 
 formElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -465,6 +460,16 @@ const hideInputError = (inputElement) => {
   errorSpan.classList.remove('form__input-error_active');
   errorSpan.textContent = '';
 };
+
+// Exemplo de uso:
+const inputElement = document.getElementById('profileName');
+const errorMessage = 'Por favor, preencha esse campo';
+
+// Exibir erro
+showInputError(inputElement, errorMessage);
+
+// Ocultar erro
+hideInputError(inputElement);
 
 const checkInputValidity = (inputElement) => {
   if (!inputElement.validity.valid) {
@@ -518,4 +523,3 @@ function createCardTemplate(name, link) {
   `;
   return cardTemplate;
 }
-

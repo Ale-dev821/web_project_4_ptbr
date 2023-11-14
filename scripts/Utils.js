@@ -50,6 +50,36 @@ export default class Utils {
     isAddPopupOpen = true;
   }
 
+  closeAnyPopup() {
+    const popups = document.querySelectorAll('.popup-enter');
+    popups.forEach((popup) => {
+      popup.classList.remove('popup-enter');
+      popup.style.display = 'none';
+    });
+    isAddPopupOpen = false;
+    ispopupContainerOpen = false;
+  }
+
+  // Função para fechar formulários e imagens com a tecla "Esc"
+  closeOnEscape(e) {
+    if (e.key === "Escape") {
+      // Fechar formulários
+      const forms = document.querySelectorAll('form');
+      forms.forEach(form => {
+     
+      });
+
+      // Fechar imagens
+      const images = document.querySelectorAll('img');
+      images.forEach(image => {
+     
+      });
+
+      // Fechar qualquer popup aberta
+      this.closeAnyPopup();
+    }
+  }
+
   setEventListeners() {
     const editButton = document.querySelector(".edit-button");
     const closePopupButton = document.querySelector(".close-button");
