@@ -185,7 +185,7 @@ function closeAnyPopup() {
     popup.style.display = 'none';
   });
   isAddPopupOpen = false;
-  ispopupContainerOpen = false;
+  let ispopupContainerOpen = false;
 }
 
 document.addEventListener('keydown', function (event) {
@@ -193,6 +193,7 @@ document.addEventListener('keydown', function (event) {
     closeAnyPopup();
   }
 });
+
 
 addButton.addEventListener("click", () => {
   const itemTitleElement = document.querySelector(".itemTitle");
@@ -342,6 +343,12 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
 const closeButton = document.getElementById("close-button");
 
+// Função para fechar lightbox
+function closeLightbox() {
+  lightbox.style.display = "none";
+}
+
+// Event listener para clicar na imagem na galeria
 galleryImages.forEach(function (galleryImage) {
   galleryImage.addEventListener("click", function () {
     lightbox.style.display = "block";
@@ -349,8 +356,16 @@ galleryImages.forEach(function (galleryImage) {
   });
 });
 
+// Event listener para clicar no botão de fechar
 closeButton.addEventListener("click", function () {
-  lightbox.style.display = "none";
+  closeLightbox();
+});
+
+// Event listener para a tecla "Esc"
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    closeLightbox();
+  }
 });
 
 function setError(index) {
@@ -406,37 +421,36 @@ function aboutValidate() {
 }
 
 function validateTitle() {
-  let campos = document.querySelectorAll('.required');
-  return campos[2].value.length >= 2 && campos[2].value.length <= 30;
+    let campos = document.querySelectorAll('.required');
+    return campos[2].value.length >= 2 && campos[2].value.length <= 30;
 }
 
 function validateLink() {
-  let campos = document.querySelectorAll('.required');
-  const linkValue = campos[3].value.trim();
-  return isValidURL(linkValue);
+    let campos = document.querySelectorAll('.required');
+    const linkValue = campos[3].value.trim();
+    return isValidURL(linkValue);
 }
 
 function isValidURL(url) {
-  try {
-      new URL(url);
-      return true;
-  } catch (error) {
-      return false;
-  }
+    try {
+        new URL(url);
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
 function validateForm() {
-  const isTitleValid = validateTitle();
-  const isLinkValid = validateLink();
+    const isTitleValid = validateTitle();
+    const isLinkValid = validateLink();
 
-  if (isTitleValid && isLinkValid) {
-      // O formulário é válido, você pode prosseguir com o envio dos dados ou outra ação desejada.
-  } else {
-      // Exiba uma mensagem geral de erro ou ação apropriada, se necessário.
-      // Não salve as informações se houver erros de validação.
-  }
+    if (isTitleValid && isLinkValid) {
+        // O formulário é válido, você pode prosseguir com o envio dos dados ou outra ação desejada.
+    } else {
+        // Exiba uma mensagem geral de erro ou ação apropriada, se necessário.
+        // Não salve as informações se houver erros de validação.
+    }
 }
-
 
 formElement.addEventListener('submit', (evt) => {
   evt.preventDefault();

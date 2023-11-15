@@ -60,25 +60,32 @@ export default class Utils {
     ispopupContainerOpen = false;
   }
 
-  // Função para fechar formulários e imagens com a tecla "Esc"
-  closeOnEscape(e) {
-    if (e.key === "Escape") {
-      // Fechar formulários
-      const forms = document.querySelectorAll('form');
-      forms.forEach(form => {
-     
-      });
+ // Função para fechar formulários, imagens e qualquer popup com a tecla "Esc"
+closeOnEscape(e) {
+  if (e.key === "Escape") {
+    // Fechar formulários
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+      form.style.display = 'none';
+    });
 
-      // Fechar imagens
-      const images = document.querySelectorAll('img');
-      images.forEach(image => {
-     
-      });
+    // Fechar imagens
+    const images = document.querySelectorAll("lightbox-image");
+    images.forEach(image => {
+      image.style.display = 'none';
+    });
 
-      // Fechar qualquer popup aberta
-      this.closeAnyPopup();
-    }
+    // Fechar qualquer popup aberta
+    this.closeAnyPopup();
   }
+}
+
+closeAnyPopup() {
+  const popups = document.querySelectorAll('.popup');
+  popups.forEach(popup => {
+    popup.style.display = 'none';
+  });
+}
 
   setEventListeners() {
     const editButton = document.querySelector(".edit-button");
