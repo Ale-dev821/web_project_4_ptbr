@@ -2,7 +2,6 @@ import Card from "./Card.js";
 import Utils from "./Utils.js";
 import FormValidator from "./FormValidator.js";
 
-
 const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
 const editButton = document.querySelector(".edit-button");
 const editProfilePopup = document.querySelector("#editProfilePopup");
