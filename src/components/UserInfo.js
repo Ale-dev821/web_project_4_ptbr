@@ -25,7 +25,6 @@ const userInfo = new UserInfo({
 
 // Obtendo as informações do usuário
 const userData = userInfo.getUserInfo();
-console.log(userData);
 
 // Definindo novas informações do usuário
 userInfo.setUserInfo({ name: 'Novo Nome', job: 'Nova Profissão' });

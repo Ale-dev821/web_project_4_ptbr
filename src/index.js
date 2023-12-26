@@ -3,6 +3,8 @@ import Utils from "./Utils.js";
 import FormValidator from "./FormValidator.js";
 
 const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
+const formValidator = new FormValidator('#seuFormulario', enviarFormulario);
+
 const editButton = document.querySelector(".edit-button");
 const editProfilePopup = document.querySelector("#editProfilePopup");
 const closePopupButton = document.querySelector(".close-button");
@@ -124,11 +126,11 @@ document
 
 checkLocalStorage();
 
-function openEditProfilePopup2() {
+function openEditProfilePopuptwo() {
   editProfilePopup.classList.add("popup_opened");
 }
 
-function closeEditProfilePopup2() {
+function closeEditProfilePopuptwo() {
   editProfilePopup.classList.remove("popup_opened");
 }
 
@@ -170,8 +172,8 @@ function closeAddPopup() {
   }, 500);
 }
 
-let isAddPopupOpen = false;
-function openAddPopup2() {
+const isAddPopupOpen = false;
+function openAddPopuptwo() {
   addPopup.classList.add('popup-enter');
   addPopup.style.display = 'block';
   isAddPopupOpen = true;
