@@ -1,10 +1,15 @@
-import Card from "./Card.js";
-import Utils from "./Utils.js";
-import FormValidator from "./FormValidator.js";
+import Card from "./components/Card.js";
+import Utils from "./components/Utils.js";
+import FormValidator from "./components/FormValidator.js";
+import './blocks/footer.css';
+import './blocks/header.css';
+import './blocks/inter.css';
+import './blocks/main.css';
+import './blocks/page.css';
+import './blocks/photo-grid.css';
+import './blocks/profile.css';
 
 const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
-const formValidator = new FormValidator('#seuFormulario', enviarFormulario);
-
 const editButton = document.querySelector(".edit-button");
 const editProfilePopup = document.querySelector("#editProfilePopup");
 const closePopupButton = document.querySelector(".close-button");
