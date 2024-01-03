@@ -9,16 +9,21 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
+  },
+  resolve: {
+    alias: {
+      Images: path.resolve(__dirname, 'src/images/')
+    }
   },
   devtool: 'source-map',
   devServer: {
-    port:8080,
+    port: 8080,
     static: './dist',
     open: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-
       template: './src/index.html',
     }),
     new CleanWebpackPlugin(),
@@ -26,14 +31,14 @@ module.exports = {
       filename: 'styles.css',
     }),
     new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: 'src/images',
-            to: 'images',
-          },
-        ],
-      }),
-    ],
+      patterns: [
+        {
+          from: 'src/images',
+          to: 'images',
+        },
+      ],
+    }),
+  ],
   module: {
     rules: [
       {
@@ -52,14 +57,38 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        test: /\.(png|jpe?g|gif|svg)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
+              limit: 8192,
               name: '[name].[ext]',
-              outputPath: 'images',
+              outputPath: 'images/',
             },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              // Opções para otimização de imagens
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75
+              }
+            }
           },
         ],
       },
