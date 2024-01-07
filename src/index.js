@@ -9,6 +9,9 @@ import './blocks/page.css';
 import './blocks/photo-grid.css';
 import './blocks/profile.css';
 
+const stylelint = require('praktikum-stylelint');
+
+
 const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
 const editButton = document.querySelector(".edit-button");
 const editProfilePopup = document.querySelector("#editProfilePopup");
