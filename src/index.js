@@ -31,7 +31,54 @@ fetch(url, {
     console.error('Erro na solicitação:', error);
   });
 
+// Dados do perfil a serem editados
+const editedProfileData = {
+  name: "Novo Nome do Usuário",
+  about: "Nova Descrição do Usuário",
+};
 
+// URL para a solicitação PATCH
+const editProfileUrl = `https://around.nomoreparties.co/v1/${groupId}/users/me`;
+
+fetch(editProfileUrl, {
+  method: "PATCH",
+  headers: {
+    authorization: token,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(editedProfileData),
+})
+  .then((res) => res.json())
+  .then((updatedProfile) => {
+    console.log("Dados do perfil atualizados:", updatedProfile);
+  })
+  .catch((error) => {
+    console.error("Erro na solicitação PATCH:", error);
+  });
+
+  const addCardUrl = `https://around.nomoreparties.co/v1/${groupId}/cards`;
+
+  const newCardData = {
+    name: "Nome do Novo Cartão",
+    link: "https://link-da-imagem.com/imagem.jpg"
+  };
+  
+  fetch(addCardUrl, {
+    method: "POST",
+    headers: {
+      authorization: token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newCardData)
+  })
+    .then(response => response.json())
+    .then(newCard => {
+      console.log("Novo Cartão Adicionado:", newCard);
+    })
+    .catch(error => {
+      console.error('Erro na solicitação:', error);
+    });
+  
 
 const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
 const editButton = document.querySelector(".edit-button");
