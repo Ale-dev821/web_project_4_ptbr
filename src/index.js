@@ -9,6 +9,29 @@ import './blocks/page.css';
 import './blocks/photo-grid.css';
 import './blocks/profile.css';
 
+const token = "ff4f017e-43f3-4e41-82c0-79a54bc6a7d2";
+const groupId = "web_ptbr_08";
+const url = `https://around.nomoreparties.co/v1/${groupId}/users/me`;
+
+fetch(url, {
+  headers: {
+    authorization: token
+  }
+})
+  .then(res => res.json())
+  .then((userData) => {
+    const { name, about, avatar, _id } = userData;
+
+    console.log("Nome:", name);
+    console.log("Sobre:", about);
+    console.log("Avatar:", avatar);
+    console.log("ID de Usuário:", _id);
+  })
+  .catch(error => {
+    console.error('Erro na solicitação:', error);
+  });
+
+
 
 const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
 const editButton = document.querySelector(".edit-button");
@@ -246,15 +269,7 @@ addItemButton.addEventListener("click", () => {
     itemLink.value = "";
 
     closeAddPopup();
-    function removeCart(event) {
-      const deleteButton = event.target;
-      const groupImage = deleteButton.closest(".group-image");
-    
-      if (groupImage) {
-        groupImage.remove();
-      }
-    }
-    
+
     const deleteButtons = document.querySelectorAll(".delete-button");
     
     deleteButtons.forEach((deleteButton) => {
@@ -328,22 +343,39 @@ function fillImages() {
 
 fillImages();
 
+const deletePopup = document.getElementById('deletePopup');
+const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+const closeDeletePopupButton = document.getElementById('closebutton');
+
 // Função para remover um cartão
 function removeCart(event) {
   const deleteButton = event.target;
   const groupImage = deleteButton.closest(".group-image");
 
-  if (groupImage) {
-    groupImage.remove();
-  }
+  confirmDeleteButton.addEventListener('click', () => {
+    if (groupImage) {
+      groupImage.remove();
+    }
+
+    deletePopup.classList.add('hidden');
+  });
+
+  closeDeletePopupButton.addEventListener('click', () => {
+    deletePopup.classList.add('hidden');
+  });
+
+  deletePopup.classList.remove('hidden');
 }
 
-const deleteButton = document.querySelectorAll(".delete-button");
+const deleteButtons = document.querySelectorAll(".delete-button");
 
-deleteButton.forEach((botao) => {
-  botao.addEventListener("click", removeCart);
+deleteButtons.forEach((deleteButton) => {
+  deleteButton.addEventListener("click", removeCart);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  deletePopup.classList.add('hidden');
+});
 
 const galleryImages = document.querySelectorAll(".gallery-image");
 const lightbox = document.getElementById("lightbox");

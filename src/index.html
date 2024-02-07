@@ -94,7 +94,7 @@
         </section>
         <section class="photo-grid" id="photoGrid">
           <template id="imageTemplate">
-            <div class="group-image">
+            <div class="group-image" id="card-{{_id}}">
               <img class="gallery-image" data-type="auto" />
               <p class="group-text"></p>
               <button
@@ -102,7 +102,9 @@
                 data-default=""
                 data-hover=""
                 data-active="active.png"
+                id="likeButton-{{_id}}"
               ></button>
+              <p class="likes-count" id="likesCount-{{_id}}">0 curtidas</p>
               <button class="delete-button" data-active=""></button>
             </div>
           </template>
@@ -111,6 +113,14 @@
           <img id="lightbox-image" alt="Imagem a ser carregada pelo usuario" />
           <button id="close-button"></button>
         </div>
+        <div class="delete-popup hidden" id="deletePopup">
+          <div class="delete-popup__overlay"></div>
+          <div class="delete-popup__container">
+          <h2 class="delete-popup__title">Tem certeza?</h2>
+          <button class="confirm-delete" id="confirmDeleteButton">Sim</button>
+          <button id="closebutton" class=""></button>
+        </div>
+</div>
       </main>
     </div>
     <footer class="footer">© 2021 Around The U.S.</footer>
