@@ -240,4 +240,8 @@
   .hidden {
     display: none;
   }
-  
+  .like-count {
+    display: block;
+    font-size: 18px;
+    margin-top: 8px;
+  }

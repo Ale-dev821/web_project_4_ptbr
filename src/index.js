@@ -79,7 +79,14 @@ fetch(editProfileUrl, {
       console.error('Erro na solicitação:', error);
     });
   
+    let likeCounter = 0;
 
+    function likePost() {
+       likeCounter++;
+       document.getElementById('likeCount').innerText = likeCounter;
+    }
+    
+    
 const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
 const editButton = document.querySelector(".edit-button");
 const editProfilePopup = document.querySelector("#editProfilePopup");
