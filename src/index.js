@@ -86,6 +86,41 @@ fetch(editProfileUrl, {
        document.getElementById('likeCount').innerText = likeCounter;
     }
     
+    const editAvatarIcon = document.getElementById("editAvatarIcon");
+    const avatarInput = document.getElementById("avatarInput");
+    
+    editAvatarIcon.addEventListener("click", () => {
+      avatarInput.click();
+    });
+    
+    avatarInput.addEventListener("change", handleAvatarChange);
+    
+    function handleAvatarChange() {
+      const file = avatarInput.files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append("avatar", file);
+    
+        const updateAvatarUrl = `https://around.nomoreparties.co/v1/${groupId}/users/me/avatar`;
+    
+        fetch(updateAvatarUrl, {
+          method: "PATCH",
+          headers: {
+            authorization: token,
+          },
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((updatedUser) => {
+            // Lógica para exibir o novo avatar na página
+            const newAvatarUrl = updatedUser.avatar;
+            document.querySelector(".avatar").src = newAvatarUrl;
+          })
+          .catch((error) => {
+            console.error("Erro na atualização do avatar:", error);
+          });
+      }
+    }
     
 const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
 const editButton = document.querySelector(".edit-button");

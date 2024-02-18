@@ -17,11 +17,15 @@
           <div class="logo-line"></div>
         </header>
         <section class="profile">
+          <label for="avatarInput" class="edit-avatar-icon" id="editAvatarIcon">
           <img
             class="avatar"
             src="images/Avatar.png"
             alt="Imagem do avatar a ser adicionado"
           />
+          <div class="edit-icon"></div>
+        </label>
+        <input type="file" id="avatarInput" class="hidden" accept="image/*" />
           <div class="profile-intro">
             <button class="edit-button" id="editButtonInsidePopup" data-active="active.png"></button>
             <h1 class="title-intro" minlength="2" maxlength="40">Jacques Cousteau</h1>
