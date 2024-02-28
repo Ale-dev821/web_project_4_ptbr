@@ -9,6 +9,19 @@ import './blocks/page.css';
 import './blocks/photo-grid.css';
 import './blocks/profile.css';
 
+const overlay = document.getElementById('overlay');
+const modalContainer = document.getElementById('modalContainer');
+
+function showPopup() {
+  overlay.style.display = 'block';
+  modalContainer.style.display = 'block';
+}
+
+function hidePopup() {
+  overlay.style.display = 'none';
+  modalContainer.style.display = 'none';
+}
+
 const token = "ff4f017e-43f3-4e41-82c0-79a54bc6a7d2";
 const groupId = "web_ptbr_08";
 const url = `https://around.nomoreparties.co/v1/${groupId}/users/me`;
@@ -21,11 +34,6 @@ fetch(url, {
   .then(res => res.json())
   .then((userData) => {
     const { name, about, avatar, _id } = userData;
-
-    console.log("Nome:", name);
-    console.log("Sobre:", about);
-    console.log("Avatar:", avatar);
-    console.log("ID de Usuário:", _id);
   })
   .catch(error => {
     console.error('Erro na solicitação:', error);
@@ -122,19 +130,18 @@ fetch(editProfileUrl, {
       }
     }
     
-const formValidator = new FormValidator('#editProfilePopup',  document.getElementById('editProfilePopup'));
-const editButton = document.querySelector(".edit-button");
-const editProfilePopup = document.querySelector("#editProfilePopup");
-const closePopupButton = document.querySelector(".close-button");
-const saveProfileButton = document.querySelector("#saveProfileButton");
-const profileName = document.querySelector("#profileName");
-const profileAbout = document.querySelector("#profileAbout");
-const formElement = document.getElementById('addPopup');
-const inputElements = formElement.querySelectorAll('.required');
-const submitButton = formElement.querySelector('#addItemButton');
-const form = document.getElementById('form');
-const card = new Card();
-const utils = new Utils();
+    const editButton = document.querySelector(".edit-button");
+    const editProfilePopup = document.querySelector("#editProfilePopup");
+    const closePopupButton = document.querySelector(".close-button");
+    const saveProfileButton = document.querySelector("#saveProfileButton");
+    const profileName = document.querySelector("#profileName");
+    const profileAbout = document.querySelector("#profileAbout");
+    const formElement = document.getElementById('addPopup');
+    const inputElements = formElement.querySelectorAll('.required');
+    const submitButton = formElement.querySelector('#addItemButton');
+    const form = document.getElementById('form');
+    const campos = document.querySelectorAll('.required');
+    const spans = document.querySelectorAll('.span-required');
 
 
 editButton.addEventListener("click", () => {
@@ -511,8 +518,6 @@ function setError(index) {
 function removeError(index) {
   let campos = document.querySelectorAll('.required');
   let spans = document.querySelectorAll('.span-required');
-  
-  // Remova o estilo de erro no campo específico
   campos[index].style.border = '';
   spans[index].style.display = 'none';
 }
@@ -520,8 +525,6 @@ function removeError(index) {
 // Função de validação específica do campo
 function isValid(index) {
   let campo = document.querySelectorAll('.required')[index];
-  // Implemente a lógica de validação específica do campo aqui
-  // Exemplo: verificar se o valor do campo é válido
   return campo.value.length >= 2 && campo.value.length <= 40;
 }
 
@@ -549,14 +552,23 @@ function aboutValidate() {
 }
 
 function validateTitle() {
-    let campos = document.querySelectorAll('.required');
-    return campos[2].value.length >= 2 && campos[2].value.length <= 30;
+  if (campos[2].value.length < 2 || campos[2].value.length > 30) {
+    setError(2);
+    return false;
+  } else {
+    removeError(2);
+    return true;
+  }
 }
-
 function validateLink() {
-    let campos = document.querySelectorAll('.required');
-    const linkValue = campos[3].value.trim();
-    return isValidURL(linkValue);
+  const linkValue = campos[3].value.trim();
+  if (!isValidURL(linkValue)) {
+    setError(3);
+    return false;
+  } else {
+    removeError(3);
+    return true;
+  }
 }
 
 function isValidURL(url) {
@@ -580,13 +592,10 @@ function validateForm() {
     }
 }
 
-formElement.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  validateForm();
-});
 
 form.addEventListener('submit', function (evt) {
   evt.preventDefault();
+  validateForm();
 });
 
 const showInputError = (inputElement, errorMessage) => {
@@ -602,16 +611,6 @@ const hideInputError = (inputElement) => {
   errorSpan.classList.remove('form__input-error_active');
   errorSpan.textContent = '';
 };
-
-// Exemplo de uso:
-const inputElement = document.getElementById('profileName');
-const errorMessage = 'Por favor, preencha esse campo';
-
-// Exibir erro
-showInputError(inputElement, errorMessage);
-
-// Ocultar erro
-hideInputError(inputElement);
 
 const checkInputValidity = (inputElement) => {
   if (!inputElement.validity.valid) {
